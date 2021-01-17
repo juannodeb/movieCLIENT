@@ -1,4 +1,5 @@
-import React, { useState, useHistory } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import { Grid, TextField, Button } from '@material-ui/core';
 import { AccountCircle as User, VpnKey as Password } from '@material-ui/icons';
 
@@ -7,7 +8,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // const history = useHistory();
+  const history = useHistory();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -32,7 +33,7 @@ const SignUp = () => {
     })
 
     if (response.status === 200) {
-      // history.push('/');
+      history.push('/sign_in');
     }
   }
 
@@ -44,7 +45,7 @@ const SignUp = () => {
             <User />
           </Grid>
           <Grid item>
-            <TextField id="input-with-icon-grid" label="Email" type="text" onChange={handleEmail}/>
+            <TextField id="email_field" label="Email" type="text" onChange={handleEmail}/>
           </Grid>
         </Grid>
         <Grid container spacing={1} alignItems="flex-end">
@@ -52,7 +53,7 @@ const SignUp = () => {
             <Password />
           </Grid>
           <Grid item>
-            <TextField id="input-with-icon-grid" label="Password" type="password" onChange={handlePassword} />
+            <TextField id="password_field" label="Password" type="password" onChange={handlePassword} />
           </Grid>
         </Grid>
       </div>

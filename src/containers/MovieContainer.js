@@ -1,7 +1,9 @@
+import Movie from '../components/Movie';
+
 const MovieContainer = () => {
   return (
     <div>
-      Hola desde MovieContainer
+      <Movie />
     </div>
   )
 }

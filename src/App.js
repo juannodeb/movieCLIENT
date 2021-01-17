@@ -14,7 +14,7 @@ const App = () => {
       <Switch>
         <Route exact path="/sign_in" component={SignIn} />
         <Route exact path="/sign_up" component={SignUp} />
-        <Route exact path="/" component={MovieContainer} />
+        <Route exact path="/movies" component={MovieContainer} />
         <Route exact path="/" component={MovieContainer} />
         <Route exact path="/" component={MovieContainer} />
         <Route component={NotFound} />
