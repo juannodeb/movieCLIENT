@@ -4,7 +4,7 @@ import { Grid, TextField, Button } from '@material-ui/core';
 import { AccountCircle as User, VpnKey as Password } from '@material-ui/icons';
 
 const SignIn = () => {
-  const SIGN_IN_ENDPOINT = 'http://localhost:3001/auth/sign_in';
+  const SIGN_IN_ENDPOINT = process.env.REACT_APP_SIGN_IN_ENDPOINT;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
