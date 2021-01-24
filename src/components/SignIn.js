@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import auth from './auth/auth';
+// import auth from './auth/auth';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Zoom, TextField, Button } from '@material-ui/core';
@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   mainButton: {
     width: '18rem',
     marginBottom: '2rem',
+    fontWeight: '600',
   },
 
   secondaryButton: {
@@ -89,9 +90,10 @@ const SignIn = (props) => {
           color="primary"
           className={classes.mainButton}
           onClick={() => {
-            auth.login(() => {
-              props.history.push('/movies');
-            })
+            // auth.login(() => {
+            //   props.history.push('/movies');
+            // })
+            alert('I want to Sign In')
           }}
         >
           Sign In
