@@ -10,6 +10,11 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
 
+  wrapper: {
+    width: '80%',
+    margin: '0 auto',
+  },
+
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -31,6 +36,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flex: 1,
     justifyContent: 'flex-end',
+  },
+
+  linkTitle: {
+    textDecoration: 'none',
+    color: '#fff',
   },
 
   linkText: {
@@ -74,9 +84,9 @@ const Navbar = (props) => {
   return (
     <>
       <AppBar position="static" color="primary">
-        <Toolbar>
+        <Toolbar className={classes.wrapper}>
           <Typography variant="h6" className={classes.title}>
-            movieAPI
+            <Link to={'/'} key={'Root'} className={classes.linkTitle}>movieAPI</Link>
           </Typography>
           { isMobile ? (
             <>
