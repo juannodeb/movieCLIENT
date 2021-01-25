@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   title: {
-    [theme.breakpoints.down('sm')]:{
+    [theme.breakpoints.down('sm')]: {
       flexGrow: 1,
     },
     userSelect: 'none',
@@ -83,7 +83,7 @@ const Navbar = (props) => {
 
   return (
     <>
-      <AppBar position="static" color="primary">
+      <AppBar position="fixed" color="primary">
         <Toolbar className={classes.wrapper}>
           <Typography variant="h6" className={classes.title}>
             <Link to={'/'} key={'Root'} className={classes.linkTitle}>movieAPI</Link>

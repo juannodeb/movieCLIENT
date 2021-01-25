@@ -13,14 +13,14 @@ const useStyles = makeStyles((theme) => ({
   },
 
   title: {
-    [theme.breakpoints.down('xs')]:{
+    [theme.breakpoints.down('xs')]: {
       fontSize: '3rem',
     },
     userSelect: 'none',
   },
 
   subtitle: {
-    [theme.breakpoints.down('xs')]:{
+    [theme.breakpoints.down('xs')]: {
       fontSize: '.96rem',
     },
     userSelect: 'none',
