@@ -1,4 +1,6 @@
 # movie_client
+---
+---
 
 ### About
 
@@ -10,12 +12,13 @@ The backend app repository can be found [here](https://github.com/juannodeb/movi
 
 The frontend app repository can be found [here](https://github.com/juannodeb/movie_client).
 
-Live demos (Migth not work due to free dynos usage):
+**Live demos (Migth not work due to free dynos usage):**
 
 Frontend in [Heroku](https://dev-movieapi-front.herokuapp.com/)
 
 Backend in [Heroku](https://dev-movieapi-back.herokuapp.com/)
 
+---
 ### How to use (if not using Heroku)
 
 1. Open your terminal.
@@ -46,6 +49,7 @@ Backend in [Heroku](https://dev-movieapi-back.herokuapp.com/)
    The app would use the default port (3000) to work with the back side app made with Ruby on Rails
    Your browser should automatically open the app. If this doesn't happen go to `localhost:3000` in your preferred browser
 
+---
 
 ### Disclaimers
 
@@ -57,10 +61,12 @@ Backend in [Heroku](https://dev-movieapi-back.herokuapp.com/)
 
 4. The functionality is not tested (unit-testing) nor the app is working as expected as of version 1 of the project
 
+---
 
 ### Improvements
 
 1. Finish MVP/full functionality of the project to work with the back side app ( currently some re-renders, redirects and protected routes not working as expected)
 2. Add tests
 3. Refactor on the overall project
-
+---
+---
