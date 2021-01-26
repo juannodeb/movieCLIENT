@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, IconButton, List, ListItem, ListItemText, Menu, Typography, useMediaQuery } from '@material-ui/core';
 import { Menu as Logo } from "@material-ui/icons";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import auth from './auth/auth';
+import UseAuth from './auth/UseAuth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,21 +61,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = (props) => {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const isLoggedIn = auth.isAuthenticated();
-  const navLinks = isLoggedIn ?
-    [
-      { title: 'Movies', path: '/movies' },
-      { title: 'Favorites', path: '/favorites' },
-      { title: 'Sign Out', path: '/sign_out' }
-    ]:
-    [
-      { title: 'Sign In', path: '/sign_in' },
-      { title: 'Sign Up', path: '/sign_up' }
-    ]
+  const [isLoggedIn, handleUser, navLinks] = UseAuth();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
