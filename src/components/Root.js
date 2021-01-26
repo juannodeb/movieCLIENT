@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles"
 import { Typography, Zoom } from '@material-ui/core';
+import UseAuth from './auth/UseAuth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,20 +40,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Root = () => {
+  const [isLoggedIn, handleUser, navLinks] = UseAuth();
   const classes = useStyles();
   const [checked, setChecked] = useState(false);
   useEffect(() => {
     setChecked(true);
   },[])
+
   return (
     <Zoom in={checked}>
       <div className={classes.root}>
         <Typography variant="h2" className={classes.title}>Welcome to movie<span className={classes.bold}>API</span></Typography>
-        <Typography variant="body1" className={classes.subtitle}>
-          Please <Link to={'sign_in'} key={'Sign In'} className={classes.links}>sign in</Link>
-          or <Link to={'sign_up'} key={'Sign Up'} className={classes.links}>sign up</Link>
-          in order to see the list of available movies.
-        </Typography>
+        { !isLoggedIn ? (
+          <Typography variant="body1" className={classes.subtitle}>
+            Please <Link to={'sign_in'} key={'Sign In'} className={classes.links}>sign in</Link>
+            or <Link to={'sign_up'} key={'Sign Up'} className={classes.links}>sign up</Link>
+            in order to see the list of available movies.
+          </Typography>
+        ): (<></>) }
       </div>
     </Zoom>
   )
