@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardContent, CardActions, Typography, IconButton, Grid } from '@material-ui/core';
-import { Favorite } from '@material-ui/icons';
+import { Card, CardActionArea, CardContent,Typography, Grid } from '@material-ui/core';
+// import { CardActions, IconButton } from '@material-ui/core';
+// import { Favorite } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,11 +48,14 @@ const Movie = (props) => {
   
   useEffect(() => {
     const MOVIES_ENDPOINT = process.env.REACT_APP_MOVIES_ENDPOINT;
-      fetch(MOVIES_ENDPOINT)
-      .then(res => res.json())
-      .then(data => {
-        setMovies(data);
-      });
+    const headers = {
+      'access-token': localStorage.getItem('access-token'),
+      'client': localStorage.getItem('client'),
+      'uid': localStorage.getItem('uid'),
+    };
+
+    axios.get(MOVIES_ENDPOINT, { headers: headers })
+    .then((response) => setMovies(response.data));
   }, []);
 
   return (
@@ -67,11 +72,11 @@ const Movie = (props) => {
                 <Typography gutterBottom variant="h6">{movie.director}</Typography>
                 <Typography variant="body2" color="textSecondary" component="p" className={classes.description}>{movie.description}</Typography>
               </CardContent>
-              <CardActions>
+              {/* <CardActions>
                 <IconButton aria-label="add to favorites">
                   <Favorite />
                 </IconButton>
-              </CardActions>
+              </CardActions> */}
             </Card>
           </Grid>
         ))}

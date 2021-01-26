@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-// import auth from './auth/auth';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Zoom, TextField, Button } from '@material-ui/core';
 import { AccountCircle as User, VpnKey as Password } from '@material-ui/icons';
+import UseAuth from './auth/UseAuth';
 
 const useStyles = makeStyles((theme) => ({
   signIn: {
@@ -36,9 +37,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignIn = (props) => {
-  // const SIGN_IN_ENDPOINT = process.env.REACT_APP_SIGN_IN_ENDPOINT;
+  const SIGN_IN_ENDPOINT = process.env.REACT_APP_SIGN_IN_ENDPOINT;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoggedIn, handleUser, navLinks] = UseAuth();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -49,24 +51,24 @@ const SignIn = (props) => {
   }
 
   const body = { email: email, password: password };
-  console.log('body: ', body);
 
-  // async function sendCredentials(url = SIGN_IN_ENDPOINT, data = body) {
-  //   const response = await fetch(url, {
-  //     method: 'POST',
-  //     mode: 'cors',
-  //     cache: 'no-cache',
-  //     credentials: 'same-origin',
-  //     headers: { 'Content-Type': 'application/json'},
-  //     redirect: 'follow',
-  //     referrerPolicy: 'no-referrer',
-  //     body: JSON.stringify(data)
-  //   })
+  function sendCredentials() {
+    axios.post(SIGN_IN_ENDPOINT, body)
+    .then((response) => {
+      if (response.status === 200) {
+        localStorage.setItem('access-token', response.headers['access-token']);
+        localStorage.setItem('client', response.headers['client']);
+        localStorage.setItem('uid', response.headers['uid']);
+        // localStorage.setItem('authenticated', true);
 
-  //   if (response.status === 200) {
-  //     history.push('/movies');
-  //   }
-  // }
+        handleUser(true);
+        props.history.push('/movies');
+      }
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
   const classes = useStyles();
   const [checked, setChecked] = useState(false);
   useEffect(() => {
@@ -90,10 +92,7 @@ const SignIn = (props) => {
           color="primary"
           className={classes.mainButton}
           onClick={() => {
-            // auth.login(() => {
-            //   props.history.push('/movies');
-            // })
-            alert('I want to Sign In')
+            sendCredentials();
           }}
         >
           Sign In
