@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ProtectedRoute } from './components/auth/protected.route';
+import FavoriteContainer from './containers/FavoriteContainer';
+import MovieContainer from './containers/MovieContainer';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+import SignOut from './components/SignOut';
+import NotFound from './containers/NotFound';
+import Navbar from './components/Navbar';
+import Root from './components/Root';
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Root} />
+        <Route exact path="/sign_in" component={SignIn} />
+        <Route exact path="/sign_up" component={SignUp} />
+        <ProtectedRoute exact path="/sign_out" component={SignOut} />
+        <ProtectedRoute exact path="/movies" component={MovieContainer} />
+        <ProtectedRoute exact path="/favorites" component={FavoriteContainer} />
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 export default App;
